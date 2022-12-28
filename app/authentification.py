@@ -50,6 +50,7 @@ def login():
                 session['logged_in'] = True
                 session['token'] = token
                 session['role'] = user['role']
+                session['user_id'] = user['user_id']
                 return redirect(url_for('index'))
             else:
                 return jsonify({'Message': 'Invalid password'})
@@ -80,9 +81,9 @@ def create_user():
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         username = request.form['username']
         hashed_password = generate_password_hash(request.form['password'], method='sha256')
-        #role = "client" #request.form['role']
+        role = request.form['role']
 
-        cur.execute("INSERT INTO assurerplus.accounts (username, password, role) VALUES (%s, %s, 'client')", (username, hashed_password))
+        cur.execute("INSERT INTO assurerplus.accounts (username, password, role) VALUES (%s, %s, %s)", (username, hashed_password, role))
         conn.commit()
         cur.close()#
         conn.close()#

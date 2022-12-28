@@ -24,6 +24,7 @@ def get_env_variable(name):
 app = Flask(__name__)
 
 app.secret_key = get_env_variable("SECRET_KEY")
+app.config['UPLOAD_FOLDER'] = get_env_variable("UPLOAD_FOLDER")
 
 DB_HOST = get_env_variable("POSTGRES_DB_HOST")
 DB_NAME = get_env_variable("POSTGRES_DB_NAME")

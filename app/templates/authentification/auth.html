@@ -8,6 +8,7 @@
     </div>
 </div>
 <br>
+{% if session['role'] == 'private'%}
 <div>
     <h3>Creation de compte</h3>
     {% with messages = get_flashed_messages()  %}
@@ -25,8 +26,13 @@
     <form action="/create" method="POST">
         <input type="username" name="username" placeholder="Username"> <br><br>
         <input type="password" name="password" placeholder="Password"> <br><br>
+        <select name="role">
+            <option value="private">Employé</option>
+            <option value="client" selected="selected">Client</option>
+        </select> <br><br>
         <input type="submit" value="Créer">
     </form>
 </div>
+{% endif %}
 
 {% endblock %}

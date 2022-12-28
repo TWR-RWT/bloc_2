@@ -3,14 +3,15 @@
 
 <div>
     <h3>Declarer un Sinistre</h3>
-    <form action="/declaration" method="POST">
+    <form action="{{url_for('submit_declaration')}}" method="POST" enctype="multipart/form-data">
         <input type="text" name="nom" placeholder="Nom"> <br><br>
         <input type="text" name="prenom" placeholder="Prenom"> <br><br>
         <input type="text" name="telephone" placeholder="Telephone"> <br><br>
         <input type="text" name="email" placeholder="Email"> <br><br>
-        <input type="text" name="date_sinistre" placeholder="Date du sinistre"> <br><br>
+        <input type="date" name="date_sinistre" placeholder="Date du sinistre"> <br><br>
         <input type="text" name="adresse_sinistre" placeholder="Adresse du sinistre"> <br><br>
         <input type="text" name="description" placeholder="Description"> <br><br>
+        <input type="file" name="file_sinistre" accept=".png, .jpg, .jpeg"> <br><br>
         <input type="submit" value="Declarer">
     </form>
 </div>
