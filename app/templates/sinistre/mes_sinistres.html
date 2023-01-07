@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="col-md-9">
+    <table id="table_sinistres" class="table table-striped table-bordered table_main" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID sinistre</th>
+                <th>ID utilisateur</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Date du sinistre</th>
+                <th>Adresse du sinistre</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Commentaires</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in list_mes_sinistres %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
+                <td>{{ row[10] }}</td>
+                <td>{{ row[11] }}</td>
+                <td width="130">
+                    <a href="" class="btn btn-secondary btn-sm">Actionner</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

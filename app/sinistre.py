@@ -80,3 +80,60 @@ def sinistres():
     cur.close()
     conn.close()
     return render_template('sinistre/sinistres.html', list_sinistres=sinistres)
+
+
+##### sinistres_modif #####
+@app.route("/sinistres/<string:id>", methods=['POST', 'GET'])
+@token_required_contr
+def sinistres_modif(id):
+    if request.method == 'POST':
+        print("after if")
+        name_attribut = "statut_"+id
+        statut = request.form[name_attribut]
+        conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        try: 
+            cur.execute(""" UPDATE assurerplus.sinistres SET status = %s WHERE id_sinistre = %s
+            """, (statut, id))
+            conn.commit()
+            cur.execute("SELECT * FROM assurerplus.sinistres")
+            sinistres = cur.fetchall()
+            cur.close()
+            conn.close()
+            return render_template('sinistre/sinistres.html', list_sinistres=sinistres)
+        except Exception as e:
+            return e
+
+##### sinistres_modif_com #####
+@app.route("/sinistres/modif_com/<string:id>", methods=['POST', 'GET'])
+@token_required_contr
+def sinistres_modif_com(id):
+    if request.method == 'POST':
+        print("after if")
+        name_attribut = "commentaire"
+        commentaire = request.form[name_attribut]
+        conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        try: 
+            cur.execute(""" UPDATE assurerplus.sinistres SET commentaires = %s WHERE id_sinistre = %s
+            """, (commentaire, id))
+            conn.commit()
+            cur.execute("SELECT * FROM assurerplus.sinistres")
+            sinistres = cur.fetchall()
+            cur.close()
+            conn.close()
+            return render_template('sinistre/sinistres.html', list_sinistres=sinistres)
+        except Exception as e:
+            return e
+
+##### select mes_sinistres #####
+@app.route("/mes_sinistres")
+@token_required_contr
+def mes_sinistres():
+    conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute("SELECT * FROM assurerplus.sinistres WHERE id_user = %s", (session.get('user_id'),))
+    mes_sinistres = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('sinistre/mes_sinistres.html', list_mes_sinistres=mes_sinistres)

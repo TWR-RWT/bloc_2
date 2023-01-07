@@ -15,7 +15,8 @@
                 <th>Adresse du sinistre</th>
                 <th>Description</th>
                 <th>Image</th>
-                <th>Actions</th>
+                <th>Statut</th>
+                <th>Commentaires</th>
             </tr>
         </thead>
         <tbody>
@@ -30,10 +31,33 @@
                 <td>{{ row[6] }}</td>
                 <td>{{ row[7] }}</td>
                 <td>{{ row[8] }}</td>
-                <td>{{ row[9] }}</td>
-                <td width="130">
-                    <a href="" class="btn btn-secondary btn-sm">Actionner</a>
+                <td>{{ row[9][row[9].find("_")+1:-4] }}
+                    <form>
+                        
+                    </form>
+                    <a href="" class="btn btn-secondary btn-sm">Voir l'image</a>
+                </td> <br><br>
+                <td>
+                    <form action="{{url_for('sinistres_modif', id=row[0] ) }}" method="POST">
+                        <select name="statut_{{ row[0] }}" id="statut_{{ row[0] }}">
+                            {% for choice in ('en_cours', 'incomplet', 'cloturer') %}
+                                {% if choice == row[10] %}
+                                <option value="{{choice}}" selected>{{ choice}}</option>
+                                {% else %}
+                                <option value="{{choice}}">{{ choice}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select> <br><br>
+                        <input type="submit" value="Mettre à jours">
+                    </form>
                 </td>
+                <td>
+                    <form action="{{url_for('sinistres_modif_com', id=row[0] ) }}" method="POST">
+                        <textarea name="commentaire" id="commentaire_{{ row[0] }}" cols="30" rows="3">{{ row[11] }}</textarea>
+                        <input type="submit" value="Mettre à jours">
+                    </form>
+                </td>
+
             </tr>
         {% endfor %}
         </tbody>

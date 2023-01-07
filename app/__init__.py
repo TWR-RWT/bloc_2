@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from dotenv import load_dotenv
 load_dotenv()
 
+
 # Function to get the environmental variables
 def get_env_variable(name):
     try:
@@ -26,6 +27,8 @@ app = Flask(__name__)
 app.secret_key = get_env_variable("SECRET_KEY")
 app.config['UPLOAD_FOLDER'] = get_env_variable("UPLOAD_FOLDER")
 
+
+
 DB_HOST = get_env_variable("POSTGRES_DB_HOST")
 DB_NAME = get_env_variable("POSTGRES_DB_NAME")
 DB_USER = get_env_variable("POSTGRES_DB_USER")
@@ -36,6 +39,8 @@ DB_PORT = get_env_variable("POSTGRES_DB_PORT")
 def index():
     if not session.get('logged_in'):
         return render_template('/authentification/login.html')
+    elif session.get('role') == 'private':
+        return sinistre.sinistres()
     else:
         return sinistre.declaration()
 
