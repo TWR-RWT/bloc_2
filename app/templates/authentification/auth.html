@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div>
+<div class="col-md-12 px-2 d-flex flex-column justify-content-center align-items-center">
     <h3>Deconnexion</h3>
     <div>
         <a href="/logout" class="btn btn-danger btn-delete btn-sm">Deconnexion</a>
@@ -9,7 +9,7 @@
 </div>
 <br>
 {% if session['role'] == 'private'%}
-<div>
+<div class="col-md-12 px-2 d-flex flex-column justify-content-center align-items-center">
     <h3>Creation de compte</h3>
     {% with messages = get_flashed_messages()  %}
     {% if messages %}

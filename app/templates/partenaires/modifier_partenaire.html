@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div>
+    <h3>Modifier le partenaire</h3>
+    <form action="{{url_for('submit_modif_partenaire', partenaire_id=partenaire.id)}}" method="POST" enctype="multipart/form-data">
+        <label for="type">Type</label><br>
+        <div>
+            {% if partenaire.type == "Remorqueur" %}
+                <input type="radio" id="type_remorqueur" name="type" value="Remorqueur" checked />
+                <label for="type_remorqueur">Remorqueur</label>
+                <input type="radio" id="type_garage" name="type" value="Garage" />
+                <label for="type_garage">Garage</label>
+            {% else %}
+                <input type="radio" id="type_remorqueur" name="type" value="Remorqueur" />
+                <label for="type_remorqueur">Remorqueur</label>
+                <input type="radio" id="type_garage" name="type" value="Garage" checked />
+                <label for="type_garage">Garage</label>
+            {% endif %}
+        </div>
+
+        <label for="Entreprise">Entreprise</label><br>
+        <input type="text" name="Entreprise" value="{{partenaire.entreprise}}"> <br><br>
+
+        <label for="telephone">Telephone</label><br>
+        <input type="text" name="telephone" value="{{partenaire.telephone}}"> <br><br>
+
+        <label for="email">Email</label><br>
+        <input type="text" name="email" value="{{partenaire.email}}"> <br><br>
+
+        <label for="adresse">Adresse</label><br>
+        <input type="text" name="adresse" value="{{partenaire.adresse}}"> <br><br>
+
+        <label for="ville">Ville</label><br>
+        <input type="text" name="ville" value="{{partenaire.ville}}"> <br><br>
+
+        <label for="CP">Code Postal</label><br>
+        <input type="text" name="CP" value="{{partenaire.code_postal}}"> <br><br>
+
+        <label for="website">Site Internet</label><br>
+        <input type="text" name="website" value="{{partenaire.website}}"> <br><br>
+
+        <input type="submit" value="Modifier">
+    </form>
+</div>
+
+{% endblock %}

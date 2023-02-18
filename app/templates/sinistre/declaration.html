@@ -1,16 +1,28 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div>
+<div class="col-md-12 px-2 d-flex flex-column justify-content-center align-items-center">
     <h3>Declarer un Sinistre</h3>
     <form action="{{url_for('submit_declaration')}}" method="POST" enctype="multipart/form-data">
+        <label for="nom">Nom</label><br>
         <input type="text" name="nom" placeholder="Nom"> <br><br>
+        <label for="prenom">Prenom</label><br>
         <input type="text" name="prenom" placeholder="Prenom"> <br><br>
+        <label for="telephone">Telephone</label><br>
         <input type="text" name="telephone" placeholder="Telephone"> <br><br>
+        <label for="email">Email</label><br>
         <input type="text" name="email" placeholder="Email"> <br><br>
+        <label for="date_sinistre">Date du sinistre</label><br>
         <input type="date" name="date_sinistre" placeholder="Date du sinistre"> <br><br>
+        <label for="adresse_sinistre">Adresse du sinistre</label><br>
         <input type="text" name="adresse_sinistre" placeholder="Adresse du sinistre"> <br><br>
+        <label for="ville">Ville</label><br>
+        <input type="text" name="ville" placeholder="Ville"> <br><br>
+        <label for="code_postal">Code Postal</label><br>
+        <input type="text" name="code_postal" placeholder="Code Postal"> <br><br>
+        <label for="description">Description</label><br>
         <input type="text" name="description" placeholder="Description"> <br><br>
+        <label for="file_sinistre">Image</label><br>
         <input type="file" name="file_sinistre" accept=".png, .jpg, .jpeg"> <br><br>
         <input type="submit" value="Declarer">
     </form>

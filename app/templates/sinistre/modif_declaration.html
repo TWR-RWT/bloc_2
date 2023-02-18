@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="col-md-12 px-2 d-flex flex-column justify-content-center align-items-center">
+    <h3>Modifier le sinistre</h3>
+    <form action="{{url_for('submit_modif_declaration', sinistre_id=sinistre.id_sinistre, sinistre_file=sinistre_file)}}" method="POST" enctype="multipart/form-data">
+        <label for="nom">Nom</label><br>
+        <input type="text" name="nom" value="{{sinistre.nom}}"> <br><br>
+        <label for="prenom">Prenom</label><br>
+        <input type="text" name="prenom" value="{{sinistre.prenom}}"> <br><br>
+        <label for="telephone">Telephone</label><br>
+        <input type="text" name="telephone" value="{{sinistre.telephone}}"> <br><br>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" value="{{sinistre.email}}"> <br><br>
+        <label for="date_sinistre">Date du sinistre</label><br>
+        <input type="date" name="date_sinistre" value="{{sinistre.date_sinistre}}"> <br><br>
+        <label for="adresse_sinistre">Adresse du sinistre</label><br>
+        <input type="text" name="adresse_sinistre" value="{{sinistre.adresse_sinistre}}"> <br><br>
+        <label for="ville">Ville</label><br>
+        <input type="text" name="ville" value="{{sinistre.ville_sinistre}}"> <br><br>
+        <label for="code_postal">Code Postal</label><br>
+        <input type="text" name="code_postal" value="{{sinistre.code_postal_sinistre}}"> <br><br>
+        <label for="description">Description</label><br>
+        <input type="text" name="description" value="{{sinistre.description}}"> <br><br>
+        <label for="check">Modifier la pièce jointe</label><br>
+        <input type="checkbox" id="check" name="check"><br>
+        <div id="sous_check" style="display:none;"> 
+            <input type="file" name="file_sinistre"  accept=".png, .jpg, .jpeg" > 
+        </div>
+        <br>
+        <input type="submit" value="Declarer"><br><br>
+    </form>
+</div>
+<script src="../../static/javascript/checkbox.js"></script>
+
+{% endblock %}

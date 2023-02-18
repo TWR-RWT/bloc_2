@@ -13,6 +13,8 @@
                 <th>Email</th>
                 <th>Date du sinistre</th>
                 <th>Adresse du sinistre</th>
+                <th>Ville</th>
+                <th>Code postal</th>
                 <th>Description</th>
                 <th>Image</th>
                 <th>Statut</th>
@@ -31,17 +33,24 @@
                 <td>{{ row[6] }}</td>
                 <td>{{ row[7] }}</td>
                 <td>{{ row[8] }}</td>
-                <td>{{ row[9][row[9].find("_")+1:-4] }}
-                    <form>
-                        
-                    </form>
-                    <a href="" class="btn btn-secondary btn-sm">Voir l'image</a>
+                <td>{{ row[9] }}</td>
+                <td>{{ row[10] }}</td>
+                <td>{% if row[11] != None %}
+                    {{ row[11][row[11].find("_")+1:-4] }}
+                    <br><br>
+                    <a href="/static/images/{{ row[11] }}" target="_blank" class="btn btn-secondary btn-sm">Ouvrir l'image</a>
+                    <br><br>
+                    <a href="{{url_for('download_file', filename=row[11] ) }}" class="btn btn-secondary btn-sm">Télécharger l'image</a>
+                    {% else %}
+                    Aucune image
+                    {% endif %}
+
                 </td> <br><br>
                 <td>
                     <form action="{{url_for('sinistres_modif', id=row[0] ) }}" method="POST">
                         <select name="statut_{{ row[0] }}" id="statut_{{ row[0] }}">
                             {% for choice in ('en_cours', 'incomplet', 'cloturer') %}
-                                {% if choice == row[10] %}
+                                {% if choice == row[12] %}
                                 <option value="{{choice}}" selected>{{ choice}}</option>
                                 {% else %}
                                 <option value="{{choice}}">{{ choice}}</option>
@@ -53,7 +62,7 @@
                 </td>
                 <td>
                     <form action="{{url_for('sinistres_modif_com', id=row[0] ) }}" method="POST">
-                        <textarea name="commentaire" id="commentaire_{{ row[0] }}" cols="30" rows="3">{{ row[11] }}</textarea>
+                        <textarea name="commentaire" id="commentaire_{{ row[0] }}" cols="30" rows="3">{{ row[13] }}</textarea>
                         <input type="submit" value="Mettre à jours">
                     </form>
                 </td>

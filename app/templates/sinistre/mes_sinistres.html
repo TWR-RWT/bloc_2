@@ -1,47 +1,69 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="col-md-9">
-    <table id="table_sinistres" class="table table-striped table-bordered table_main" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID sinistre</th>
-                <th>ID utilisateur</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>Date du sinistre</th>
-                <th>Adresse du sinistre</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Status</th>
-                <th>Commentaires</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for row in list_mes_sinistres %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[3] }}</td>
-                <td>{{ row[4] }}</td>
-                <td>{{ row[5] }}</td>
-                <td>{{ row[6] }}</td>
-                <td>{{ row[7] }}</td>
-                <td>{{ row[8] }}</td>
-                <td>{{ row[9] }}</td>
-                <td>{{ row[10] }}</td>
-                <td>{{ row[11] }}</td>
-                <td width="130">
-                    <a href="" class="btn btn-secondary btn-sm">Actionner</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="col-md-12 px-2">
+    <div class="table-responsive">
+        <table id="table_sinistres" class="table table-striped table-bordered table_main" style="width:100%">
+            <thead>
+                <tr>
+                    <!-- <th>ID sinistre</th>
+                    <th>ID utilisateur</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Telephone</th>
+                    <th>Email</th>  -->
+                    <th>Date du sinistre</th>
+                    <th>Adresse du sinistre</th>
+                    <th>Ville</th>
+                    <th>Code postal</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Commentaires</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in list_mes_sinistres %}
+                <tr>
+                    <!-- <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td> 
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td> -->
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[9] }}</td>
+                    <td>{{ row[10] }}</td>
+                    <td>
+                        {% if row[11] != None %}
+                        {{ row[11][row[11].find("_")+1:-4] }}
+                        <br><br>
+                        <a href="/static/images/{{ row[11] }}" target="_blank" class="btn btn-secondary btn-sm">Ouvrir</a>
+                        <br><br>
+                        
+                        <a href="{{url_for('delete_file', filename=row[11], sinistre_id=row[0]) }}" class="btn btn-secondary btn-sm">Supprimer</a>
+                        
+                        {% else %}
+                        <form id="form{{row[0]}}" action="{{url_for('upload_file', sinistre_id=row[0] )}}" method="POST" enctype="multipart/form-data">
+                            <input type="file" id="file{{row[0]}}" name="picture" accept=".png, .jpg, .jpeg" style="display:none;"> 
+                            <label for="file{{row[0]}}" class="btn btn-secondary btn-sm" >Choisir une image</label> <br><br>
+                            <input type="submit" class="btn btn-secondary btn-sm" placeholder="Ajouter une image">
+                        </form>
+                        {% endif %}
+                    </td>
+                    <td>{{ row[12] }}</td>
+                    <td>{{ row[13] }}</td>
+                    <td width="130">
+                        <a href="{{url_for('red_modif_declaration', sinistre_id=row[0]) }}" class="btn btn-secondary btn-sm">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

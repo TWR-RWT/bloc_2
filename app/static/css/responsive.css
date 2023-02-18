@@ -1,0 +1,95 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
+    width:95%;
+    align-items: center;
+}
+
+/**/
+@media (min-width: 320px) {
+    .container, body {
+        font-size: 0.5em;
+    }
+    .navbar-nav {
+        width:85%;
+    }
+
+    .btn-group-sm>.btn, .btn-sm, button, form, input, .form-control-sm, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text {
+        font-size: 0.5rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}
+@media (min-width: 576px){
+    .container, body {
+        font-size: 0.5em;
+    }
+    .navbar-nav {
+        width:60%;
+    }
+    .btn-group-sm>.btn, .btn-sm, button, form, input, .form-control-sm, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text {
+        font-size: 0.5rem;
+    }
+    h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container, body {
+        font-size: 0.7em;
+    }
+    .navbar-nav {
+        width:60%;
+    }
+    .btn-group-sm>.btn, .btn-sm, button, form, input, .form-control-sm, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text {
+        font-size: 0.7rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 920px) {
+    .container, body {
+        font-size: 0.9em;
+    }
+    .navbar-nav {
+        width:55%;
+    }
+    .btn-group-sm>.btn, .btn-sm, button, form, input, .form-control-sm, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text {
+        font-size: 0.9rem;
+    }
+    h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .container, body {
+        font-size: 0.5em;
+    }
+    .navbar-nav {
+        width:100%;
+    }
+    .btn-group-sm>.btn, .btn-sm, button, form, input, .form-control-sm, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text {
+        font-size: 0.5rem;
+    }
+    h3 {
+        font-size: 0.75rem;
+    }
+}
+/**/
+
